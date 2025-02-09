@@ -21,7 +21,7 @@ func getCurrentTime() string {
 
 func timeHandler(response http.ResponseWriter, request *http.Request) {
 	currentTime := getCurrentTime()
-	answer, err := json.Marshal(TimeResponse{currentTime})
+	answer, err := json.Marshal(TimeResponse{ currentTime })
 	if err != nil {
 		response.WriteHeader(http.StatusInternalServerError)
 		return
