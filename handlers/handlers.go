@@ -1,7 +1,9 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
+	"time"
 )
 
 type TimeResponse struct {
@@ -11,4 +13,13 @@ type TimeResponse struct {
 type Handler struct {
 	Methods    []string
 	Controller func(http.ResponseWriter, *http.Request)
+}
+
+func getCurrentTime() string {
+	return time.Now().Format(time.RFC3339)
+}
+
+func timeHandler(response http.ResponseWriter, request *http.Request) {
+	currentTime := getCurrentTime()
+	fmt.Println(currentTime)
 }
