@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"fmt"
+	"encoding/json"
 	"net/http"
 	"time"
 )
@@ -21,5 +21,11 @@ func getCurrentTime() string {
 
 func timeHandler(response http.ResponseWriter, request *http.Request) {
 	currentTime := getCurrentTime()
-	fmt.Println(currentTime)
+	answer, err := json.Marshal(TimeResponse{currentTime})
+	if err != nil {
+		response.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	response.Header().Set("Content-Type", "application/json")
+	response.Write(answer)
 }
