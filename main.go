@@ -2,9 +2,13 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
-func main() {
-	fmt.Println("Hello world")
+func getCurentTime() string {
+	return time.Now().Format(time.RFC3339)
+}
 
+func main() {
+	fmt.Println(getCurentTime())
 }
